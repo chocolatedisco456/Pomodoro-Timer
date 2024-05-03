@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <span class="special-p">Pomodoro </span>
+            <span class="special-t">Timer</span>
+        </h1>
+        <div id="round-display">Round 1</div>  
+        <div id="break-time-sign" style="display: none; font-size: 2em; text-align: center;">Break Time 😊</div>
+        <div id="timer-container">
+            <object id="timer-img" type="image/svg+xml" data="Tomato.svg">Your browser does not support SVG</object>
+            <div id="time-display">40:00</div>
+        </div>
+        <div class="button-container">
+            <button onclick="startTimer()">Start</button>
+            <button onclick="pauseTimer()">Pause</button>
+            <button onclick="resetTimer()">Reset</button>
+            <button onclick="toggleSettings()">Time Settings</button>
+        </div>
+        <div id="settings-panel" style="display:none;">
+            <label for="work-time">Work Time (minutes):</label>
+            <select id="work-time">
+                <option value="1">1 </option>
+                <option value="5">5 </option>
+                <option value="10">10 </option>
+                <option value="15">15 </option>
+                <option value="20">20 </option>
+                <option value="25">25 </option>
+                <option value="30">30 </option>
+                <option value="35">35 </option>
+                <option value="40" selected="selected">40 </option>
+                <option value="45">45 </option>
+                <option value="50">50 </option>
+                <option value="55">55 </option>
+                <option value="60">60 </option>
+            </select>
+        
+            <label for="break-time">Break Time (minutes):</label>
+            <select id="break-time">
+                <option value="1">1 </option>
+                <option value="5">5 </option>
+                <option value="10" selected="selected">10 </option>
+                <option value="15">15 </option>
+                <option value="20">20 </option>
+                <option value="25">25 </option>
+                <option value="30">30 </option>
+            </select>
+        
+            <button onclick="applySettings()">Apply</button>
+        </div>
+        
+        <audio id="work-sound" src="sounds/At Rest - Kevin MacLeod remake.mp3" type="audio/mpeg"></audio>
+        <audio id="break-sound" src="sounds/Merry Bay - Ghostrifter Official remake.mp3" type="audio/mpeg"></audio>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

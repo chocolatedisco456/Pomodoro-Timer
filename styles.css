@@ -1,0 +1,126 @@
+@font-face {
+    font-family: RP;
+    src: url(Font/Right\ Point.otf);
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: RP;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 4em;  /* Adjust the size as needed, this sets it to 3 times the default size */
+    color: #3c3939;  /* Optional: change the color if needed */
+    text-align: center;  /* Ensures the headline is centered */
+    padding: 10px 0;  /* Adds padding above and below the headline */
+    margin-bottom: 10px;
+}
+
+
+
+.special-p {
+    color: #f75252;  
+}
+
+.special-t {
+    color: #89cc5c; 
+}
+
+#round-display {
+    font-size: 2.5em;
+    color: #3c3939;
+    text-align: center;
+    margin: 10px 0;
+}
+.container {
+    text-align: center;
+    background: transparent; /* Change this to transparent to remove the white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Added to position the timer text absolutely relative to this container */
+    width: fit-content; /* Adjust width to fit the content */
+}
+
+#timer-container {
+    position: relative;
+    text-align: center; /* Center everything inside the container */
+}
+
+#timer-img {
+    width: 300px;
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin: 50px auto; /* Center the image horizontally */
+}
+
+#time-display {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5em;
+    color: white;
+    font-weight: bold;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3c3939; /* Optional: change button color to match the theme */
+    color: white; /* Optional: change text color to white for better contrast */
+    border: none; /* Optional: remove button border */
+    border-radius: 5px; /* Optional: round the button corners */
+    transition: background-color 0.5s ease;
+}
+
+button:hover {
+    background-color: #7c2222; /* Darker shade of tomato */
+    color: #ffffff; /* Keep text color white */
+}
+
+.button-container {
+    margin-top: -10px;
+    margin-bottom: 20px; /* Increase space below the buttons */
+    text-align: center;
+}
+
+#settings-panel {
+    text-align: center;
+    padding: 10px;
+}
+
+#settings-panel label {
+    font-family: 'Helvetica', sans-serif; /* Set Arial as the font for labels */
+    font-size: 16px; /* Optional: set the font size */
+
+}
+
+#settings-panel button {
+    display: block; /* Makes the button a block element */
+    margin: 20px auto; /* Centers the button and adds margin at the top */
+}
+
+#settings-panel select {
+    width: 100%;  /* Full width to match the panel */
+    padding: 8px;  /* Padding for better touch interaction and appearance */
+    margin-top: 10px;
+    margin-bottom: 10px;  /* Space below each dropdown */
+    font-family: 'Arial', sans-serif;  /* Consistent font style */
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+#break-time-sign {
+    color: #f55a4e; /* Adjust color to fit your design */
+    padding: 5px 0; /* Spacing above and below the text */
+}
