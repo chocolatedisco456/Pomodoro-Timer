@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -20,10 +23,14 @@
             <div id="time-display">40:00</div>
         </div>
         <div class="button-container">
-            <button onclick="startTimer()">Start</button>
+            <button id="start-button" onclick="startTimer()">Start</button>
             <button onclick="pauseTimer()">Pause</button>
             <button onclick="resetTimer()">Reset</button>
             <button onclick="toggleSettings()">Time Settings</button>
+        </div>
+        <div class="volume-controls">
+            <label for="master-volume">Volume:</label>
+            <input type="range" id="master-volume" min="0" max="1" step="0.01" value="0.5" onchange="setMasterVolume(this.value)">
         </div>
         <div id="settings-panel" style="display:none;">
             <label for="work-time">Work Time (minutes):</label>
@@ -59,7 +66,10 @@
         
         <audio id="work-sound" src="sounds/At Rest - Kevin MacLeod remake.mp3" type="audio/mpeg"></audio>
         <audio id="break-sound" src="sounds/Merry Bay - Ghostrifter Official remake.mp3" type="audio/mpeg"></audio>
+        <audio id="click-sound" src="sounds/Click sound.mp3" type="audio/mpeg"></audio>
+
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

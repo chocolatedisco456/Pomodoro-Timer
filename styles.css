@@ -3,6 +3,7 @@
     src: url(Font/Right\ Point.otf);
 }
 
+
 body, html {
     height: 100%;
     margin: 0;
@@ -72,6 +73,9 @@ button {
     margin: 5px;
     padding: 10px 20px;
     font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-style: normal;
     cursor: pointer;
     background-color: #3c3939; /* Optional: change button color to match the theme */
     color: white; /* Optional: change text color to white for better contrast */
@@ -97,7 +101,9 @@ button:hover {
 }
 
 #settings-panel label {
-    font-family: 'Helvetica', sans-serif; /* Set Arial as the font for labels */
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-style: normal;
     font-size: 16px; /* Optional: set the font size */
 
 }
@@ -112,7 +118,9 @@ button:hover {
     padding: 8px;  /* Padding for better touch interaction and appearance */
     margin-top: 10px;
     margin-bottom: 10px;  /* Space below each dropdown */
-    font-family: 'Arial', sans-serif;  /* Consistent font style */
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-style: normal;
 }
 
 label {
@@ -123,4 +131,51 @@ label {
 #break-time-sign {
     color: #f55a4e; /* Adjust color to fit your design */
     padding: 5px 0; /* Spacing above and below the text */
+}
+
+.volume-controls {
+    margin-top: 20px;
+    text-align: center; /* Align the volume control to the left */ 
+}
+
+.volume-controls label {
+    display: block;
+    margin-bottom: 5px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+input[type="range"] {
+    width: 50%; /* Reduce the width to make the slider smaller */
+    -webkit-appearance: none;  /* Override default appearance */
+    appearance: none;
+    height: 8px; /* Set a fixed height for the slider thumb */
+    background: #3c3939; /* Set the background color for the slider */
+    outline: none; /* Remove the outline to avoid focus outline styles */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default appearance */
+    appearance: none;
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    background: #ffffff; /* Color of the thumb */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%; /* Make the thumb circular */
+    border: 2px solid #3c3939; /* Border color matching the track */
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    background: #ffffff; /* Color of the thumb */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%; /* Make the thumb circular */
+    border: 2px solid #3c3939; /* Border color matching the track */
+}
+
+input[type="range"]::-moz-range-track {
+    background: #3c3939; /* Set the background color for the slider */
+    height: 8px; /* Track height */
 }
