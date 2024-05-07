@@ -69,19 +69,25 @@ function toggleSettings() {
 }
 
 function applySettings() {
-    const workTime = parseInt(document.getElementById('work-time').value) * 60;
-    const breakTime = parseInt(document.getElementById('break-time').value) * 60;
+    const newWorkTime = parseInt(document.getElementById('work-time').value) * 60;
+    const newBreakTime = parseInt(document.getElementById('break-time').value) * 60;
 
     if (isRunning) {
         alert("Stop the timer before changing settings.");
         return;
     }
 
-    if (workTime > 0 && breakTime > 0) {
-        time = workTime;
-        workDuration = workTime;
-        breakDuration = breakTime;
-        displayTime();
+    if (newWorkTime > 0 && newBreakTime > 0) {
+        workDuration = newWorkTime;  // Update global work duration
+        breakDuration = newBreakTime;  // Update global break duration
+        
+        if (isBreakTime) {
+            time = breakDuration;  // Apply new break duration if it's currently break time
+        } else {
+            time = workDuration;  // Apply new work duration if it's currently work time
+        }
+        
+        displayTime();  // Refresh the display with new time
     } else {
         alert("Please enter valid times for work and break periods.");
     }
