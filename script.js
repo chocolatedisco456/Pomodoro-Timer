@@ -6,6 +6,20 @@ let workDuration = 40 * 60; // Work duration in seconds, set this dynamically as
 let breakDuration = 10 * 60; // Break duration in seconds, set this dynamically as needed
 let currentRound = 1;  // Initialize the round counter
 
+document.addEventListener('DOMContentLoaded', function() {
+    const startPauseBtn = document.getElementById('start-pause-btn');
+    startPauseBtn.addEventListener('click', function() {
+        if (!isRunning) {
+            startTimer();
+            startPauseBtn.textContent = 'Pause'; // Change button text to 'Pause'
+        } else {
+            pauseTimer();
+            startPauseBtn.textContent = 'Start'; // Change button text to 'Start'
+        }
+    });
+    displayTime(); // Ensure this is called to initially display the timer
+});
+
 function startTimer() {
     if (!isRunning) {
         isRunning = true;
@@ -13,20 +27,7 @@ function startTimer() {
             if (time <= 0) {
                 clearInterval(timerId);
                 isRunning = false;
-                if (!isBreakTime) {
-                    document.getElementById('work-sound').play();
-                    document.getElementById('break-time-sign').style.display = 'block';
-                    time = breakDuration;
-                    isBreakTime = true;
-                } else {
-                    document.getElementById('break-sound').play();
-                    document.getElementById('break-time-sign').style.display = 'none';
-                    time = workDuration;
-                    isBreakTime = false;
-                    currentRound++;
-                    updateRoundDisplay();
-                }
-                startTimer();
+                togglePeriod(); // Function to handle period switch between work and break
             } else {
                 time--;
                 displayTime();
@@ -36,21 +37,31 @@ function startTimer() {
 }
 
 function pauseTimer() {
-    clearInterval(timerId);
-    isRunning = false;
-    document.getElementById('work-sound').pause();
-    document.getElementById('work-sound').currentTime = 0;
-    document.getElementById('break-sound').pause();
-    document.getElementById('break-sound').currentTime = 0;
+    if (isRunning) {
+        clearInterval(timerId);
+        isRunning = false;
+        document.getElementById('work-sound').pause();
+        document.getElementById('work-sound').currentTime = 0;
+        document.getElementById('break-sound').pause();
+        document.getElementById('break-sound').currentTime = 0;
+    }
 }
 
 function resetTimer() {
     clearInterval(timerId);
-    time = workDuration;
+    time = workDuration; // Reset to default work duration
     displayTime();
     isRunning = false;
-    isBreakTime = false;
+    isBreakTime = false; // Reset to initial state indicating it's not break time
+    currentRound = 1; // Reset round count to 1
+
+    // Update the round display to reflect the reset
+    updateRoundDisplay();
+
+    // Hide the break time sign if visible
     document.getElementById('break-time-sign').style.display = 'none';
+
+    // Stop any playing audio and reset their positions
     document.getElementById('work-sound').pause();
     document.getElementById('work-sound').currentTime = 0;
     document.getElementById('break-sound').pause();
@@ -97,18 +108,9 @@ function updateRoundDisplay() {
     document.getElementById('round-display').textContent = 'Round ' + currentRound;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('start-button').addEventListener('click', function() {
-        document.getElementById('click-sound').play(); // Play the click sound
-        startTimer(); // Start the timer
-    });
-    displayTime(); // Ensure this is called to initially display the timer
-});
-
 function setMasterVolume(value) {
     var audioElements = document.querySelectorAll('audio');
     audioElements.forEach(function(audio) {
         audio.volume = value;
     });
 }
-
