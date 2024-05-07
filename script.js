@@ -9,6 +9,9 @@ let currentRound = 1;  // Initialize the round counter
 document.addEventListener('DOMContentLoaded', function() {
     const startPauseBtn = document.getElementById('start-pause-btn');
     startPauseBtn.addEventListener('click', function() {
+        // Play the click sound irrespective of the timer's state
+        document.getElementById('click-sound').play();
+
         if (!isRunning) {
             startTimer();
             startPauseBtn.textContent = 'Pause'; // Change button text to 'Pause'
@@ -19,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     displayTime(); // Ensure this is called to initially display the timer
 });
+
 
 function startTimer() {
     if (!isRunning) {
@@ -76,8 +80,20 @@ function displayTime() {
 
 function toggleSettings() {
     const settingsPanel = document.getElementById('settings-panel');
-    settingsPanel.style.display = settingsPanel.style.display === 'none' ? 'block' : 'none';
+    const volumeControls = document.getElementById('volume-controls');
+    const applyButton = document.getElementById('apply-settings');
+    
+    if (settingsPanel.style.display === 'none') {
+        settingsPanel.style.display = 'block';
+        volumeControls.style.display = 'none';  // Hide the volume mixer
+        applyButton.style.display = 'block';  // Show the apply button in the vacated space
+    } else {
+        settingsPanel.style.display = 'none';
+        volumeControls.style.display = 'block';  // Show the volume mixer again
+        applyButton.style.display = 'none';  // Hide the apply button
+    }
 }
+
 
 function applySettings() {
     const newWorkTime = parseInt(document.getElementById('work-time').value) * 60;

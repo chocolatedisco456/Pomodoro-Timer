@@ -98,6 +98,7 @@ button:hover {
 #settings-panel {
     text-align: center;
     padding: 10px;
+
 }
 
 #settings-panel label {
@@ -107,6 +108,8 @@ button:hover {
     font-size: 16px; /* Optional: set the font size */
 
 }
+
+
 
 #settings-panel button {
     display: block; /* Makes the button a block element */
@@ -178,4 +181,34 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]::-moz-range-track {
     background: #3c3939; /* Set the background color for the slider */
     height: 8px; /* Track height */
+}
+
+#apply-settings {
+    display: none;  /* Initially hidden */
+    position: relative; /* Relative positioning to shift it within its normal flow */
+    top: -20px; /* Move it upward relative to its normal position */
+    margin: 10px auto; /* Adjust vertical spacing and center horizontally */
+    padding: 10px 20px;
+    background-color: #89cc5c; /* Set the background color */
+    color: white; /* Ensure text is visible against the background */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+
+#apply-settings:hover {
+    background-color: #76a94d; /* Darker green on hover for a subtle effect */
+}
+
+
+
+#settings-panel.show-apply {
+    display: block;
+}
+
+#volume-controls {
+    margin-bottom: 20px;
 }

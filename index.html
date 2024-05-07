@@ -27,14 +27,15 @@
             <button onclick="resetTimer()">Reset</button>
             <button onclick="toggleSettings()">Time Settings</button>
         </div>        
-        <div class="volume-controls">
+        <div id="volume-controls" class="volume-controls">
             <label for="master-volume">Volume:</label>
             <input type="range" id="master-volume" min="0" max="1" step="0.01" value="0.5" onchange="setMasterVolume(this.value)">
         </div>
         <div id="settings-panel" style="display:none;">
+            <button id="apply-settings" onclick="applySettings()">Apply</button> <!-- Moved Apply button here -->
             <label for="work-time">Work Time (minutes):</label>
             <select id="work-time">
-                <option value="1">1 </option>
+                <option value="1">1</option>
                 <option value="5">5 </option>
                 <option value="10">10 </option>
                 <option value="15">15 </option>
@@ -51,7 +52,7 @@
         
             <label for="break-time">Break Time (minutes):</label>
             <select id="break-time">
-                <option value="1">1 </option>
+                <option value="1">1</option>
                 <option value="5">5 </option>
                 <option value="10" selected="selected">10 </option>
                 <option value="15">15 </option>
@@ -59,8 +60,6 @@
                 <option value="25">25 </option>
                 <option value="30">30 </option>
             </select>
-        
-            <button onclick="applySettings()">Apply</button>
         </div>
         
         <audio id="work-sound" src="sounds/At Rest - Kevin MacLeod remake.mp3" type="audio/mpeg"></audio>
