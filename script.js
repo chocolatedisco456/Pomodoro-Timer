@@ -5,12 +5,12 @@ let isBreakTime = false; // Flag to indicate if it's break time
 let workDuration = 40 * 60; // Work duration in seconds, set this dynamically as needed
 let breakDuration = 10 * 60; // Break duration in seconds, set this dynamically as needed
 let currentRound = 1;  // Initialize the round counter
+let lastTimestamp;
 
 document.addEventListener('DOMContentLoaded', function() {
     const startPauseBtn = document.getElementById('start-pause-btn');
     startPauseBtn.addEventListener('click', function() {
-        // Play the click sound irrespective of the timer's state
-        document.getElementById('click-sound').play();
+        document.getElementById('click-sound').play(); // Play the click sound
 
         if (!isRunning) {
             startTimer();
@@ -23,20 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
     displayTime(); // Ensure this is called to initially display the timer
 });
 
-
 function startTimer() {
     if (!isRunning) {
         isRunning = true;
-        timerId = setInterval(() => {
-            if (time <= 0) {
-                clearInterval(timerId);
-                isRunning = false;
-                togglePeriod(); // Function to handle period switch between work and break
-            } else {
-                time--;
-                displayTime();
-            }
-        }, 1000);
+        lastTimestamp = Date.now();
+        timerId = setInterval(updateTimer, 1000);
     }
 }
 
@@ -44,10 +35,6 @@ function pauseTimer() {
     if (isRunning) {
         clearInterval(timerId);
         isRunning = false;
-        document.getElementById('work-sound').pause();
-        document.getElementById('work-sound').currentTime = 0;
-        document.getElementById('break-sound').pause();
-        document.getElementById('break-sound').currentTime = 0;
     }
 }
 
@@ -72,9 +59,42 @@ function resetTimer() {
     document.getElementById('break-sound').currentTime = 0;
 }
 
+function updateTimer() {
+    const now = Date.now();
+    const elapsed = (now - lastTimestamp) / 1000; // Time elapsed in seconds
+    lastTimestamp = now;
+
+    time -= elapsed;
+
+    if (time <= 0) {
+        clearInterval(timerId);
+        isRunning = false;
+        togglePeriod(); // Function to handle period switch between work and break
+    } else {
+        displayTime();
+    }
+}
+
+function togglePeriod() {
+    if (!isBreakTime) {
+        document.getElementById('work-sound').play();
+        document.getElementById('break-time-sign').style.display = 'block';
+        time = breakDuration;
+        isBreakTime = true;
+    } else {
+        document.getElementById('break-sound').play();
+        document.getElementById('break-time-sign').style.display = 'none';
+        time = workDuration;
+        isBreakTime = false;
+        currentRound++;
+        updateRoundDisplay();
+    }
+    startTimer(); // Automatically start the next period
+}
+
 function displayTime() {
     let minutes = Math.floor(time / 60);
-    let seconds = time % 60;
+    let seconds = Math.floor(time % 60);
     document.getElementById('time-display').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
@@ -93,7 +113,6 @@ function toggleSettings() {
         applyButton.style.display = 'none';  // Hide the apply button
     }
 }
-
 
 function applySettings() {
     const newWorkTime = parseInt(document.getElementById('work-time').value) * 60;
