@@ -151,11 +151,16 @@ function setMasterVolume(value) {
 }
 
 document.addEventListener('keydown', function(event) {
+    console.log('Key pressed:', event.key);
     if (event.code === 'Space') {
         event.preventDefault();
         document.getElementById('start-pause-btn').click();
-    } else if (event.code === 'KeyR') {
+    } else if (event.key === 'r' || event.key === 'R') {
         event.preventDefault();
-        resetTimer();
+        if (typeof resetTimer === 'function') {
+            resetTimer();
+        } else {
+            console.error('resetTimer function is not defined or not accessible');
+        }
     }
 });
