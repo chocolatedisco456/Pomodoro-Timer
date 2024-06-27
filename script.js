@@ -149,3 +149,13 @@ function setMasterVolume(value) {
         audio.volume = value;
     });
 }
+
+document.addEventListener('keydown', function(event) {
+    if (event.code === 'Space') {
+        event.preventDefault();
+        document.getElementById('start-pause-btn').click();
+    } else if (event.code === 'KeyR') {
+        event.preventDefault();
+        resetTimer();
+    }
+});
